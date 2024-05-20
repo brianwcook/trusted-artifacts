@@ -4,5 +4,5 @@ COPY go.mod .
 
 
 RUN go build
-COPY /opt/app-root/src/hell /usr/bin/hello
+mv /opt/app-root/src/hell /usr/bin/hello
 
