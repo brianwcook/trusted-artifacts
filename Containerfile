@@ -4,5 +4,5 @@ COPY go.mod .
 
 
 RUN go build
-COPY ./hello /usr/bin/hello
+# COPY ./hello /usr/bin/hello
 
