@@ -1,6 +1,8 @@
-FROM registry.access.redhat.com/ubi9/ubi:latest
-RUN dnf install -y golang
+FROM registry.redhat.io/rhel9/go-toolset
+COPY hello.go .
+COPY go.mod .
 
 
 RUN go build
 COPY hello /usr/bin/hello
+
