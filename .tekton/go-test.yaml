@@ -1,1 +1,75 @@
 
+---
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  annotations:
+    tekton.dev/pipelines.minVersion: 0.12.1
+    tekton.dev/tags: image-build, appstudio, hacbs
+  labels:
+    app.kubernetes.io/version: '0.2'
+    build.appstudio.redhat.com/build_type: docker
+  name: buildah
+spec:
+  description: |-
+    run go-test using Konflux trusted artifacts patters.
+  params:
+  - default: 'true'
+    description: Verify the TLS on the registry endpoint (for push/pull to a non-TLS
+      registry)
+    name: TLSVERIFY
+    type: string
+  - description: The produced source trusted artifact URI
+    name: SOURCE_ARTIFACT
+    type: string
+  - default: ''
+    description: The produced prefetched dependencies trusted artifact URI
+    name: CACHI2_ARTIFACT
+    type: string
+  results:
+  - description: unite test results
+    name: UNIT_TEST_RESULTS
+  stepTemplate:
+    env:
+    - name: TLSVERIFY
+      value: "$(params.TLSVERIFY)"
+    volumeMounts:
+    - mountPath: "/var/workdir"
+      name: workdir
+  steps:
+  - args:
+    - use
+    - "$(params.SOURCE_ARTIFACT)=/var/workdir/source"
+    - "$(params.CACHI2_ARTIFACT)=/var/workdir/cachi2"
+    image: quay.io/lucarval/build-trusted-artifacts:latest@sha256:8f65579cdc92e0d68f261997d8c61040fe3313d0493da4c0fe64ba4252d582ae
+    name: use-trusted-artifact
+  - computeResources:
+      limits:
+        memory: 4Gi
+      requests:
+        cpu: 250m
+        memory: 512Mi
+    env:
+    image: registry.redhat.io/rhel9/go-toolset
+    name: go-test
+    script: |
+      go test
+    securityContext:
+      capabilities:
+        add:
+        - SETFCAP
+    volumeMounts:
+    - mountPath: "/var/lib/containers"
+      name: varlibcontainers
+    - mountPath: "/entitlement"
+      name: etc-pki-entitlement
+    workingDir: "/var/workdir"
+  volumes:
+  - emptyDir: {}
+    name: varlibcontainers
+  - name: etc-pki-entitlement
+    secret:
+      optional: true
+      secretName: "$(params.ENTITLEMENT_SECRET)"
+  - emptyDir: {}
+    name: workdir
