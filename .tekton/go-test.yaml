@@ -108,6 +108,9 @@ spec:
       name: varlibcontainers
     - mountPath: "/entitlement"
       name: etc-pki-entitlement
+    - mountPath: /ssh
+      name: ssh
+      readOnly: true
     workingDir: "/var/workdir"
   volumes:
   - emptyDir: {}
