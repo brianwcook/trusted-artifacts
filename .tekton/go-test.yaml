@@ -27,7 +27,6 @@ spec:
   - description: unit test results
     name: UNIT_TEST_RESULTS
   stepTemplate:
-    env:
     volumeMounts:
     - mountPath: "/var/workdir"
       name: workdir
