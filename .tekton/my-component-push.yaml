@@ -208,7 +208,7 @@ spec:
         - name: name
           value: deprecated-image-check
         - name: bundle
-          value: quay.io/lucarval/task-deprecated-image-check:0.3@sha256:da4262e47d04619ab414b4387b6f6df681c0cb89f0446bec018a010b29cb94bc
+          value: quay.io/lucarval/task-deprecated-image-check:0.3@sha256:3e9c8e0c7c65995c4e250c4d0707abd3f9ed9c6418af6a07af508b567207dbba
         - name: kind
           value: task
       when:
