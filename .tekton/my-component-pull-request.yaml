@@ -293,7 +293,7 @@ spec:
         - name: name
           value: clamav-scan
         - name: bundle
-          value: quay.io/lucarval/task-clamav-scan:0.1@sha256:a56aa471a64175cf0a3d2606c8a48fd0e91d513012bd15889b06494a20d0608d
+          value: quay.io/lucarval/task-clamav-scan:0.1@sha256:4d5cdccd559cda271fc2d4de22eb599fdbb47b11be578cb7161dcc955eb67afd
         - name: kind
           value: task
       when:
