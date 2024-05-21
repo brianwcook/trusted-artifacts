@@ -253,7 +253,7 @@ spec:
         - name: name
           value: ecosystem-cert-preflight-checks
         - name: bundle
-          value: quay.io/lucarval/task-ecosystem-cert-preflight-checks:0.1@sha256:ba67035cd9af547a06ba887ff11c34ad7f37530a9f6864f5772f29b8670d97b9
+          value: quay.io/lucarval/task-ecosystem-cert-preflight-checks:0.1@sha256:3f69baf08fc9fdc9e905c9c74ee68fa5c5c29844a253cbdde4b08fd723426e09
         - name: kind
           value: task
       when:
