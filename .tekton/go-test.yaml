@@ -31,6 +31,9 @@ spec:
     volumeMounts:
     - mountPath: "/var/workdir"
       name: workdir
+    env:
+    - name: BUILDER_IMAGE
+      value: registry.redhat.io/rhel9/go-toolset
   steps:
   - args:
     - use
