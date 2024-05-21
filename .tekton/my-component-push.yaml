@@ -110,7 +110,7 @@ spec:
         - name: revision
           value: main
         - name: pathInRepo
-          value: go-test.yaml
+          value: .tekton/go-test.yaml
     - name: build-container
       taskRef:
         resolver: bundles
