@@ -12,11 +12,6 @@ spec:
   description: |-
     run go-test using Konflux trusted artifacts patters.
   params:
-  - default: 'true'
-    description: Verify the TLS on the registry endpoint (for push/pull to a non-TLS
-      registry)
-    name: TLSVERIFY
-    type: string
   - default: /var/workdir/source
     description: directory to execute in
     name: source
@@ -33,8 +28,6 @@ spec:
     name: UNIT_TEST_RESULTS
   stepTemplate:
     env:
-    - name: TLSVERIFY
-      value: "$(params.TLSVERIFY)"
     volumeMounts:
     - mountPath: "/var/workdir"
       name: workdir
@@ -99,10 +92,6 @@ spec:
       
       # sync scripts dir to the SSH Host
       rsync -ra scripts "$SSH_HOST:$BUILD_DIR"
-      
-      # for debugging
-      ssh $SSH_ARGS "$SSH_HOST" /bin/bash -c "ls -alR /scripts"
-      ssh $SSH_ARGS "$SSH_HOST" /bin/bash -c "cat /script/script-build.sh"
       
       # execute the script in a container on the SSH host
       ssh $SSH_ARGS "$SSH_HOST" podman  run \
