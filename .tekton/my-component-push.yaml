@@ -115,6 +115,25 @@ spec:
           value: main
         - name: pathInRepo
           value: .tekton/go-test.yaml
+    - name: mpc-run-test
+      params:
+      - name: PLATFORM
+        value: linux/arm64
+      - name: SOURCE_ARTIFACT
+        value: "$(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)"
+      - name: CACHI2_ARTIFACT
+        value: "$(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)"
+      runAfter:
+        - prefetch-dependencies
+      taskRef:
+        resolver: git
+        params:
+        - name: url
+          value: https://github.com/brianwcook/trusted-artifacts
+        - name: revision
+          value: main
+        - name: pathInRepo
+          value: .tekton/go-test.yaml
     - name: build-container
       taskRef:
         resolver: bundles
