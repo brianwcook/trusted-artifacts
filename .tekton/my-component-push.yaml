@@ -312,7 +312,7 @@ spec:
         - name: name
           value: sbom-json-check
         - name: bundle
-          value: quay.io/lucarval/task-sbom-json-check:0.1@sha256:ad173b71bc13dc2dd05513743d8b0e0616ad41c955a396a9def604c7653ccbbe
+          value: quay.io/lucarval/task-sbom-json-check:0.1@sha256:7d3e982ce09e9000f6e1d2ec7998ef881dc77698a0a58f0c4c88aa1761118eda
         - name: kind
           value: task
       when:
