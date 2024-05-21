@@ -402,7 +402,7 @@ spec:
         - name: name
           value: show-sbom
         - name: bundle
-          value: quay.io/lucarval/task-show-sbom:0.1@sha256:c16ca1dcb25363fe6406311fa143c26c6f960eb4b0445f5975fe8c1c8010d86a
+          value: quay.io/lucarval/task-show-sbom:0.1@sha256:16e6c780e1fd9708ad905a01a423798a4f80490a1f1f8d47ea0a86eefe29592f
         - name: kind
           value: task
       params:
