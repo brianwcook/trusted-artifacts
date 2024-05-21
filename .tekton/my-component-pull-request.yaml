@@ -231,7 +231,7 @@ spec:
         - name: name
           value: clair-scan
         - name: bundle
-          value: quay.io/lucarval/task-clair-scan:0.1@sha256:c1e5f6c6aa6b44f3dd465f8172e00f7c04da0053f29a5bbc7c8658d07663be03
+          value: quay.io/lucarval/task-clair-scan:0.1@sha256:924b9831c7543e629fa926be73c5b67840538068e8cd9209c035beb95550c450
         - name: kind
           value: task
       when:
