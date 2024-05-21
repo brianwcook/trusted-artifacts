@@ -17,6 +17,10 @@ spec:
       registry)
     name: TLSVERIFY
     type: string
+  - default: /var/workdir/source
+    description: directory to execute in
+    name: source
+    type: string
   - description: The produced source trusted artifact URI
     name: SOURCE_ARTIFACT
     type: string
@@ -51,6 +55,7 @@ spec:
     image: registry.redhat.io/rhel9/go-toolset
     name: go-test
     script: |
+      cd /var/workdir/source
       go test
     securityContext:
       capabilities:
