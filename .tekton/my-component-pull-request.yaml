@@ -39,7 +39,7 @@ spec:
         - name: name
           value: init
         - name: bundle
-          value: quay.io/lucarval/task-init:0.2@sha256:631240e30924c804a019356378f1ff2a091d22d9c196b73d294aec8cb6aec8a3
+          value: quay.io/lucarval/task-init:0.2@sha256:722f09163c7d69eaebee0b43f59fe8540967180158d2782cbf739956a4d7d825
         - name: kind
           value: task
       params:
