@@ -106,11 +106,11 @@ spec:
         resolver: git
         params:
         - name: url
-          value: https://github.com/brianwcook/konflux-mpc-test-runner
+          value: https://github.com/brianwcook/trusted-artifacts
         - name: revision
           value: main
         - name: pathInRepo
-          value: test-runner.yaml
+          value: go-test.yaml
     - name: build-container
       taskRef:
         resolver: bundles
