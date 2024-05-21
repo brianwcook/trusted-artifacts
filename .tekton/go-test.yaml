@@ -72,12 +72,17 @@ spec:
       mkdir -p scripts
       echo "$BUILD_DIR"
       ssh $SSH_ARGS "$SSH_HOST"  mkdir -p "$BUILD_DIR/workspaces" "$BUILD_DIR/scripts" "$BUILD_DIR/tmp"
+      
+      
       echo -e local arch is: $(arch)
       echo -e remote arch is:
       ssh $SSH_ARGS "$SSH_HOST" /bin/bash -c "arch"
 
+      
       # transfers data
       rsync -ra /var/workdir/source/ "$SSH_HOST:$BUILD_DIR/workspaces/source/"
+      # transfers data
+      # rsync -ra $(workspaces.source.path)/ "$SSH_HOST:$BUILD_DIR/workspaces/source/"
       
       # write the script to disk:
       cat >scripts/script-build.sh <<'REMOTESSHEOF'
@@ -106,6 +111,7 @@ spec:
       ssh $SSH_ARGS "$SSH_HOST" podman  run \
       -e PARAM_BUILDER_IMAGE="registry.redhat.io/rhel9/go-toolset" \
       -v $BUILD_DIR/scripts:/script:Z \
+      -v "$BUILD_DIR/workspaces/source:$(workspaces.source.path):Z" \
       --user=0  --rm  "$BUILDER_IMAGE" /script/script-build.sh
 
     securityContext:
