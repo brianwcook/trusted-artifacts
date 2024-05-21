@@ -9,7 +9,7 @@ metadata:
   labels:
     app.kubernetes.io/version: '0.2'
     build.appstudio.redhat.com/build_type: docker
-  name: buildah
+  name: mpc-test-runner-ta
 spec:
   description: |-
     run go-test using Konflux trusted artifacts patters.
