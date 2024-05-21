@@ -33,7 +33,7 @@ spec:
       name: workdir
     env:
     - name: BUILDER_IMAGE
-      value: registry.redhat.io/rhel9/go-toolset
+      value: registry.access.redhat.com/ubi9/ubi
   steps:
   - args:
     - use
@@ -83,6 +83,7 @@ spec:
       cat >scripts/script-build.sh <<'REMOTESSHEOF'
       #!/bin/bash
       set -o verbose
+      yum install -y golang
       echo 'script-build.sh start'
       echo -e platform is: $(uname -m)
       cd /$BUILD_DIR/workspaces/source
