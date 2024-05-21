@@ -96,7 +96,7 @@ spec:
         value: "$(params.output-image)-prefetch"
       - name: IMAGE_EXPIRES_AFTER
         value: "$(params.image-expires-after)"
-    - name: mpc-run-test
+    - name: mpc-run-test-amd64
       params:
       - name: PLATFORM
         value: linux/amd64
@@ -115,7 +115,7 @@ spec:
           value: main
         - name: pathInRepo
           value: .tekton/go-test.yaml
-    - name: mpc-run-test
+    - name: mpc-run-test-arm64
       params:
       - name: PLATFORM
         value: linux/arm64
@@ -145,7 +145,8 @@ spec:
         - name: kind
           value: task
       runAfter:
-        - mpc-run-test
+        - mpc-run-test-arm64
+        - mpc-run-test-amd64
       when:
       - input: "$(tasks.init.results.build)"
         operator: in
