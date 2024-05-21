@@ -129,3 +129,7 @@ spec:
       secretName: "$(params.ENTITLEMENT_SECRET)"
   - emptyDir: {}
     name: workdir
+  - name: ssh
+    secret:
+      optional: false
+      secretName: multi-platform-ssh-$(context.taskRun.name)
