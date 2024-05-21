@@ -98,8 +98,12 @@ spec:
         value: "$(params.image-expires-after)"
     - name: mpc-run-test
       params:
-        - name: PLATFORM
-          value: linux/amd64
+      - name: PLATFORM
+        value: linux/amd64
+      - name: SOURCE_ARTIFACT
+      value: "$(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)"
+      - name: CACHI2_ARTIFACT
+      value: "$(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)"
       runAfter:
         - prefetch-dependencies
       taskRef:
