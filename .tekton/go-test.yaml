@@ -96,7 +96,7 @@ spec:
       pwd
       ls -alR
 
-      cd $BUILD_DIR/workspaces/source
+      cd /source
       go test
 
       REMOTESSHEOF
@@ -111,7 +111,7 @@ spec:
       ssh $SSH_ARGS "$SSH_HOST" podman  run \
       -e PARAM_BUILDER_IMAGE="registry.redhat.io/rhel9/go-toolset" \
       -v $BUILD_DIR/scripts:/script:Z \
-      -v "$BUILD_DIR/workspaces/source:$(workspaces.source.path):Z" \
+      -v "$BUILD_DIR/workspaces/source:/source:Z" \
       --user=0  --rm  "$BUILDER_IMAGE" /script/script-build.sh
 
     securityContext:
