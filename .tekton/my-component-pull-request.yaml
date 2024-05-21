@@ -418,7 +418,7 @@ spec:
         - name: name
           value: summary
         - name: bundle
-          value: quay.io/lucarval/task-summary:0.1@sha256:7935c2ff51695904b670491f7751febe9efc3c2df389f990949472b40cbf395a
+          value: quay.io/lucarval/task-summary:0.1@sha256:c38ebdb38ace126e944f29e6aff6e695d85bdfa9078e93f562f65169bf97c1f5
         - name: kind
           value: task
       params:
