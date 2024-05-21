@@ -29,7 +29,7 @@ spec:
     name: CACHI2_ARTIFACT
     type: string
   results:
-  - description: unite test results
+  - description: unit test results
     name: UNIT_TEST_RESULTS
   stepTemplate:
     env:
@@ -81,7 +81,7 @@ spec:
       ssh $SSH_ARGS "$SSH_HOST" /bin/bash -c "arch"
 
       # transfers data
-      # rsync -ra /var/workdir/source/ "$SSH_HOST:$BUILD_DIR/workspaces/source/"
+      rsync -ra /var/workdir/source/ "$SSH_HOST:$BUILD_DIR/workspaces/source/"
       
       # write the script to disk:
       cat >scripts/script-build.sh <<'REMOTESSHEOF'
