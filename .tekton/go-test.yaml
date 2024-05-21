@@ -55,6 +55,7 @@ spec:
     image: registry.redhat.io/rhel9/go-toolset
     name: go-test
     script: |
+      echo Executing on: $(arch)
       cd /var/workdir/source
       go test
     securityContext:
