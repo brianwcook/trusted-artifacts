@@ -86,7 +86,7 @@ spec:
       yum install -y golang
       echo 'script-build.sh start'
       echo -e platform is: $(uname -m)
-      cd /$BUILD_DIR/workspaces/source
+      cd $BUILD_DIR/workspaces/source
       go test
 
       REMOTESSHEOF
