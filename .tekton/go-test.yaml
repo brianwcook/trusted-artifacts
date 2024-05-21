@@ -30,9 +30,6 @@ spec:
     volumeMounts:
     - mountPath: "/var/workdir"
       name: workdir
-    env:
-    - name: BUILDER_IMAGE
-      value: registry.access.redhat.com/ubi9/ubi
   steps:
   - args:
     - use
@@ -47,7 +44,9 @@ spec:
         cpu: 250m
         memory: 512Mi
     env:
-    image: registry.redhat.io/rhel9/go-toolset
+    - name: BUILDER_IMAGE
+      value: registry.redhat.io/rhel9/go-toolset
+    image: registry.redhat.io/ubi9/ubi
     name: go-test
     script: |
       set -o verbose
@@ -106,13 +105,15 @@ spec:
       # sync scripts dir to the SSH Host
       rsync -ra scripts "$SSH_HOST:$BUILD_DIR"
       
+      # copy image pull secrets
+      rsync -ra "$HOME/.docker/" "$SSH_HOST:$BUILD_DIR/.docker/"
+
       # execute the script in a container on the SSH host
       ssh $SSH_ARGS "$SSH_HOST" podman  run \
-      -e PARAM_BUILDER_IMAGE="registry.redhat.io/rhel9/go-toolset" \
+      -e PARAM_BUILDER_IMAGE="registry.redhat.io/ubi9/ubi" \
       -v $BUILD_DIR/scripts:/script:Z \
       -v "$BUILD_DIR/workspaces/source:/source:Z" \
       --user=0  --rm  "$BUILDER_IMAGE" /script/script-build.sh
-
     securityContext:
       capabilities:
         add:
