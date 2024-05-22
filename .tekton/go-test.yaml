@@ -46,7 +46,7 @@ spec:
     env:
     - name: BUILDER_IMAGE
       value: registry.redhat.io/rhel9/go-toolset
-    image: registry.redhat.io/ubi9/ubi
+    image: registry.redhat.io/rhel9/go-toolset
     name: go-test
     script: |
       set -o verbose
