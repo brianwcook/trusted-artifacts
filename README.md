@@ -7,5 +7,5 @@ to test run:
 $ go test
 
 
-bump
+bump1
 
