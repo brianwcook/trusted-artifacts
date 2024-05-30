@@ -111,14 +111,14 @@ spec:
           value: .tekton/go-test.yaml
     - name: build-container
       taskRef:
-        resolver: bundles
+        resolver: git
         params:
-        - name: name
-          value: buildah-oci-ta
-        - name: bundle
-          value: quay.io/redhat-appstudio-tekton-catalog/task-buildah-oci-ta:0.1@sha256:692e8882c1b10d0fa6b1dc5b8191c8b01cda22e04403026bcd6168e393df9597
-        - name: kind
-          value: task
+        - name: url
+          value: https://github.com/konflux-ci/build-definitions
+        - name: revision
+          value: main
+        - name: pathInRepo
+          value: task/buildah-oci-ta/0.1/buildah-oci-ta.yaml
       runAfter:
         - mpc-run-test-arm64
         - mpc-run-test-amd64
