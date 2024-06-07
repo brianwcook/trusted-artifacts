@@ -82,8 +82,7 @@ spec:
         - name: pathInRepo
           value: task/buildah-oci-ta/0.1/buildah-oci-ta.yaml
       runAfter:
-        - mpc-run-test-arm64
-        - mpc-run-test-amd64
+        - prefetch-dependencies
       when:
       - input: "$(tasks.init.results.build)"
         operator: in
@@ -119,8 +118,8 @@ spec:
         - name: pathInRepo
           value: task/buildah-remote-oci-ta/0.1/buildah-remote-oci-ta.yaml
       runAfter:
-        - mpc-run-test-arm64
-        - mpc-run-test-amd64
+        - prefetch-dependencies
+
       when:
       - input: "$(tasks.init.results.build)"
         operator: in
