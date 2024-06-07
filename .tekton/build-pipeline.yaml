@@ -206,6 +206,7 @@ spec:
         - 'true'
       runAfter:
       - build-container
+      - build-container-arm64
       params:
       - name: BINARY_IMAGE
         value: "$(params.output-image)"
@@ -232,6 +233,7 @@ spec:
         - 'false'
       runAfter:
       - build-container
+      - build-container-arm64
       params:
       - name: BASE_IMAGES_DIGESTS
         value: "$(tasks.build-container.results.BASE_IMAGES_DIGESTS)"
@@ -256,6 +258,7 @@ spec:
         - 'false'
       runAfter:
       - build-container
+      - build-container-arm64
       params:
       - name: image-digest
         value: "$(tasks.build-container.results.IMAGE_DIGEST)"
@@ -278,6 +281,7 @@ spec:
         - 'false'
       runAfter:
       - build-container
+      - build-container-arm64
       params:
       - name: image-url
         value: "$(tasks.build-container.results.IMAGE_URL)"
@@ -318,6 +322,7 @@ spec:
         - 'false'
       runAfter:
       - build-container
+      - build-container-arm64
       params:
       - name: image-digest
         value: "$(tasks.build-container.results.IMAGE_DIGEST)"
@@ -340,6 +345,7 @@ spec:
         - 'false'
       runAfter:
       - build-container
+      - build-container-arm64
       params:
       - name: IMAGE_URL
         value: "$(tasks.build-container.results.IMAGE_URL)"
