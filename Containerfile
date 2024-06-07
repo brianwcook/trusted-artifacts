@@ -1,5 +1,5 @@
 FROM registry.redhat.io/rhel9/go-toolset
-RUN dnf -y install kernel-devel
+RUN sudo dnf -y install kernel-devel
 COPY hello.go .
 COPY go.mod .
 
