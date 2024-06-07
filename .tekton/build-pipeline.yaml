@@ -150,7 +150,7 @@ spec:
       taskRef:
         resolver: git
         params:
-        - name: buildah-remote-oci-ta
+        - name: url
           value: https://github.com/konflux-ci/build-definitions
         - name: revision
           value: main
