@@ -1,7 +1,7 @@
 # FROM registry.redhat.io/rhel9/go-toolset
 FROM registry.access.redhat.com/ubi9/ubi as builder
 # kernel devel is unnecessary but it requires entitlement, added as example
-RUN dnf -y install golang k
+RUN dnf -y install golang
 RUN mkdir /build
 WORKDIR /build
 RUN pwd
