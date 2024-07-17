@@ -28,7 +28,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   pipelineRef:
-    name: build-pipeline
+    name: multi-arch-build-pipeline
   workspaces:
     - name: git-auth
       secret:
