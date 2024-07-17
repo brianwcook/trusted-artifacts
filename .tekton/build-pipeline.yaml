@@ -75,14 +75,14 @@ spec:
         value: $(params.image-expires-after)
     - name: build-container-amd64
       taskRef:
-        resolver: bundles
+        resolver: gitref
         params:
-        - name: name
-          value: buildah-remote-oci-ta
-        - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-buildah-remote-oci-ta:0.1@sha256:35f4898d5637e6b300a87c0ffa9c5a642340b24f85cfe7bef26058e130e7b7f3
-        - name: kind
-          value: task
+        - name: url
+          value: https://github.com/rcerven/build-definitions
+        - name: revision
+          value: fix_subs
+        - name: pathInRepo
+          value: task/buildah-remote-oci-ta/0.1/buildah-remote-oci-ta.yaml
       runAfter:
         - prefetch-dependencies
       when:
@@ -121,12 +121,12 @@ spec:
       taskRef:
         resolver: bundles
         params:
-        - name: name
-          value: buildah-remote-oci-ta
-        - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-buildah-remote-oci-ta:0.1@sha256:35f4898d5637e6b300a87c0ffa9c5a642340b24f85cfe7bef26058e130e7b7f3
-        - name: kind
-          value: task
+        - name: url
+          value: https://github.com/rcerven/build-definitions
+        - name: revision
+          value: fix_subs
+        - name: pathInRepo
+          value: task/buildah-remote-oci-ta/0.1/buildah-remote-oci-ta.yaml
       runAfter:
         - prefetch-dependencies
       when:
@@ -165,12 +165,12 @@ spec:
       taskRef:
         resolver: bundles
         params:
-        - name: name
-          value: buildah-remote-oci-ta
-        - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-buildah-remote-oci-ta:0.1@sha256:35f4898d5637e6b300a87c0ffa9c5a642340b24f85cfe7bef26058e130e7b7f3
-        - name: kind
-          value: task
+        - name: url
+          value: https://github.com/rcerven/build-definitions
+        - name: revision
+          value: fix_subs
+        - name: pathInRepo
+          value: task/buildah-remote-oci-ta/0.1/buildah-remote-oci-ta.yaml
       runAfter:
         - prefetch-dependencies
       when:
@@ -209,12 +209,12 @@ spec:
       taskRef:
         resolver: bundles
         params:
-        - name: name
-          value: buildah-remote-oci-ta
-        - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-buildah-remote-oci-ta:0.1@sha256:35f4898d5637e6b300a87c0ffa9c5a642340b24f85cfe7bef26058e130e7b7f3
-        - name: kind
-          value: task
+        - name: url
+          value: https://github.com/rcerven/build-definitions
+        - name: revision
+          value: fix_subs
+        - name: pathInRepo
+          value: task/buildah-remote-oci-ta/0.1/buildah-remote-oci-ta.yaml
       runAfter:
         - prefetch-dependencies
       when:
