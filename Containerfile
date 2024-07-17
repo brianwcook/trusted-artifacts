@@ -11,7 +11,9 @@ RUN \
         tpm2-tss-devel protobuf-compiler \
         # This one is needed to build the stub.
         meson
-
+        # this is for my [bcook] go build
+        golang
+        
 RUN mkdir /build
 WORKDIR /build
 RUN pwd
