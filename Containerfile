@@ -16,7 +16,7 @@ FROM registry.access.redhat.com/ubi9/ubi as builder
 #        golang 
 
 
-RUN ls -alR /activation-key 
+RUN ls -al /
 
 RUN \
 # Enable additional repositories for CentOS or RHEL.
