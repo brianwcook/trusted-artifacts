@@ -4,7 +4,7 @@ FROM registry.access.redhat.com/ubi9/ubi as builder
 RUN \
     # Enable additional repositories for CentOS or RHEL.
     REPO_ARCH=$(uname -m) && \
-    dnf repolist \
+    dnf repolist all\
     dnf -y --setopt=install_weak_deps=0 install \
         --enablerepo=rhel-9-for-${REPO_ARCH}-appstream-rpms,codeready-builder-for-rhel-9-${REPO_ARCH}-rpms \
         cargo pkg-config perl-FindBin openssl-devel perl-lib perl-IPC-Cmd perl-File-Compare perl-File-Copy clang-devel \
