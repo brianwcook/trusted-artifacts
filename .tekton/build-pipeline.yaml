@@ -78,11 +78,11 @@ spec:
         resolver: git
         params:
         - name: url
-          value: https://github.com/rcerven/build-definitions
+          value: https://github.com/brianwcook/build-definitions
         - name: revision
-          value: fix_subs
+          value: activation-keys-support
         - name: pathInRepo
-          value: task/buildah-remote-oci-ta/0.1/buildah-remote-oci-ta.yaml
+          value: task/buildah/0.1/buildah.yaml
       runAfter:
         - prefetch-dependencies
       when:
@@ -115,140 +115,138 @@ spec:
         value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
       - name: BUILD_ARGS_FILE
         value: $(params.build-args-file)
-      - name: PLATFORM
-        value: $(params.amd64-platform)
-    - name: build-container-arm64
-      taskRef:
-        resolver: git
-        params:
-        - name: url
-          value: https://github.com/rcerven/build-definitions
-        - name: revision
-          value: fix_subs
-        - name: pathInRepo
-          value: task/buildah-remote-oci-ta/0.1/buildah-remote-oci-ta.yaml
-      runAfter:
-        - prefetch-dependencies
-      when:
-      - input: "$(tasks.init.results.build)"
-        operator: in
-        values:
-        - 'true'
-      - input: "$(params.enable-arm64-build)"
-        operator: in
-        values:
-        - 'true'
-      params:
-      - name: IMAGE
-        value: "$(params.output-image)-arm64"
-      - name: DOCKERFILE
-        value: "$(params.dockerfile)"
-      - name: CONTEXT
-        value: "$(params.path-context)"
-      - name: HERMETIC
-        value: "$(params.hermetic)"
-      - name: PREFETCH_INPUT
-        value: "$(params.prefetch-input)"
-      - name: IMAGE_EXPIRES_AFTER
-        value: "$(params.image-expires-after)"
-      - name: COMMIT_SHA
-        value: "$(tasks.clone-repository.results.commit)"
-      - name: SOURCE_ARTIFACT
-        value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
-      - name: CACHI2_ARTIFACT
-        value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
-      - name: BUILD_ARGS_FILE
-        value: $(params.build-args-file)
-      - name: PLATFORM
-        value: $(params.arm64-platform)
-    - name: build-container-ppc64le
-      taskRef:
-        resolver: git
-        params:
-        - name: url
-          value: https://github.com/rcerven/build-definitions
-        - name: revision
-          value: fix_subs
-        - name: pathInRepo
-          value: task/buildah-remote-oci-ta/0.1/buildah-remote-oci-ta.yaml
-      runAfter:
-        - prefetch-dependencies
-      when:
-      - input: "$(tasks.init.results.build)"
-        operator: in
-        values:
-        - 'true'
-      - input: "$(params.enable-ppc64le-build)"
-        operator: in
-        values:
-        - 'true'
-      params:
-      - name: IMAGE
-        value: "$(params.output-image)-ppc64le"
-      - name: DOCKERFILE
-        value: "$(params.dockerfile)"
-      - name: CONTEXT
-        value: "$(params.path-context)"
-      - name: HERMETIC
-        value: "$(params.hermetic)"
-      - name: PREFETCH_INPUT
-        value: "$(params.prefetch-input)"
-      - name: IMAGE_EXPIRES_AFTER
-        value: "$(params.image-expires-after)"
-      - name: COMMIT_SHA
-        value: "$(tasks.clone-repository.results.commit)"
-      - name: SOURCE_ARTIFACT
-        value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
-      - name: CACHI2_ARTIFACT
-        value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
-      - name: BUILD_ARGS_FILE
-        value: $(params.build-args-file)
-      - name: PLATFORM
-        value: $(params.ppc64le-platform)
-    - name: build-container-s390x
-      taskRef:
-        resolver: git
-        params:
-        - name: url
-          value: https://github.com/rcerven/build-definitions
-        - name: revision
-          value: fix_subs
-        - name: pathInRepo
-          value: task/buildah-remote-oci-ta/0.1/buildah-remote-oci-ta.yaml
-      runAfter:
-        - prefetch-dependencies
-      when:
-      - input: "$(tasks.init.results.build)"
-        operator: in
-        values:
-        - 'true'
-      - input: "$(params.enable-s390x-build)"
-        operator: in
-        values:
-        - 'true'
-      params:
-      - name: IMAGE
-        value: "$(params.output-image)-s390x"
-      - name: DOCKERFILE
-        value: "$(params.dockerfile)"
-      - name: CONTEXT
-        value: "$(params.path-context)"
-      - name: HERMETIC
-        value: "$(params.hermetic)"
-      - name: PREFETCH_INPUT
-        value: "$(params.prefetch-input)"
-      - name: IMAGE_EXPIRES_AFTER
-        value: "$(params.image-expires-after)"
-      - name: COMMIT_SHA
-        value: "$(tasks.clone-repository.results.commit)"
-      - name: SOURCE_ARTIFACT
-        value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
-      - name: CACHI2_ARTIFACT
-        value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
-      - name: BUILD_ARGS_FILE
-        value: $(params.build-args-file)
-      - name: PLATFORM
-        value: $(params.s390x-platform)
+    # - name: build-container-arm64
+    #   taskRef:
+    #     resolver: git
+    #     params:
+    #     - name: url
+    #       value: https://github.com/brianwcook/build-definitions
+    #     - name: revision
+    #       value: activation-keys-support
+    #     - name: pathInRepo
+    #       value: task/buildah-remote-oci-ta/0.1/buildah-remote-oci-ta.yaml
+    #   runAfter:
+    #     - prefetch-dependencies
+    #   when:
+    #   - input: "$(tasks.init.results.build)"
+    #     operator: in
+    #     values:
+    #     - 'true'
+    #   - input: "$(params.enable-arm64-build)"
+    #     operator: in
+    #     values:
+    #     - 'true'
+    #   params:
+    #   - name: IMAGE
+    #     value: "$(params.output-image)-arm64"
+    #   - name: DOCKERFILE
+    #     value: "$(params.dockerfile)"
+    #   - name: CONTEXT
+    #     value: "$(params.path-context)"
+    #   - name: HERMETIC
+    #     value: "$(params.hermetic)"
+    #   - name: PREFETCH_INPUT
+    #     value: "$(params.prefetch-input)"
+    #   - name: IMAGE_EXPIRES_AFTER
+    #     value: "$(params.image-expires-after)"
+    #   - name: COMMIT_SHA
+    #     value: "$(tasks.clone-repository.results.commit)"
+    #   - name: SOURCE_ARTIFACT
+    #     value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
+    #   - name: CACHI2_ARTIFACT
+    #     value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
+    #   - name: BUILD_ARGS_FILE
+    #     value: $(params.build-args-file)
+    #   - name: PLATFORM
+    #     value: $(params.arm64-platform)
+    # - name: build-container-ppc64le
+    #   taskRef:
+    #     resolver: git
+    #     params:
+    #     - name: url
+    #       value: https://github.com/brianwcook/build-definitions
+    #     - name: revision
+    #       value: activation-keys-support
+    #     - name: pathInRepo
+    #       value: task/buildah-remote-oci-ta/0.1/buildah-remote-oci-ta.yaml
+    #   runAfter:
+    #     - prefetch-dependencies
+    #   when:
+    #   - input: "$(tasks.init.results.build)"
+    #     operator: in
+    #     values:
+    #     - 'true'
+    #   - input: "$(params.enable-ppc64le-build)"
+    #     operator: in
+    #     values:
+    #     - 'true'
+    #   params:
+    #   - name: IMAGE
+    #     value: "$(params.output-image)-ppc64le"
+    #   - name: DOCKERFILE
+    #     value: "$(params.dockerfile)"
+    #   - name: CONTEXT
+    #     value: "$(params.path-context)"
+    #   - name: HERMETIC
+    #     value: "$(params.hermetic)"
+    #   - name: PREFETCH_INPUT
+    #     value: "$(params.prefetch-input)"
+    #   - name: IMAGE_EXPIRES_AFTER
+    #     value: "$(params.image-expires-after)"
+    #   - name: COMMIT_SHA
+    #     value: "$(tasks.clone-repository.results.commit)"
+    #   - name: SOURCE_ARTIFACT
+    #     value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
+    #   - name: CACHI2_ARTIFACT
+    #     value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
+    #   - name: BUILD_ARGS_FILE
+    #     value: $(params.build-args-file)
+    #   - name: PLATFORM
+    #     value: $(params.ppc64le-platform)
+    # - name: build-container-s390x
+    #   taskRef:
+    #     resolver: git
+    #     params:
+    #     - name: url
+    #       value: https://github.com/brianwcook/build-definitions
+    #     - name: revision
+    #       value: activation-keys-support
+    #     - name: pathInRepo
+    #       value: task/buildah-remote-oci-ta/0.1/buildah-remote-oci-ta.yaml
+    #   runAfter:
+    #     - prefetch-dependencies
+    #   when:
+    #   - input: "$(tasks.init.results.build)"
+    #     operator: in
+    #     values:
+    #     - 'true'
+    #   - input: "$(params.enable-s390x-build)"
+    #     operator: in
+    #     values:
+    #     - 'true'
+    #   params:
+    #   - name: IMAGE
+    #     value: "$(params.output-image)-s390x"
+    #   - name: DOCKERFILE
+    #     value: "$(params.dockerfile)"
+    #   - name: CONTEXT
+    #     value: "$(params.path-context)"
+    #   - name: HERMETIC
+    #     value: "$(params.hermetic)"
+    #   - name: PREFETCH_INPUT
+    #     value: "$(params.prefetch-input)"
+    #   - name: IMAGE_EXPIRES_AFTER
+    #     value: "$(params.image-expires-after)"
+    #   - name: COMMIT_SHA
+    #     value: "$(tasks.clone-repository.results.commit)"
+    #   - name: SOURCE_ARTIFACT
+    #     value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
+    #   - name: CACHI2_ARTIFACT
+    #     value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
+    #   - name: BUILD_ARGS_FILE
+    #     value: $(params.build-args-file)
+    #   - name: PLATFORM
+    #     value: $(params.s390x-platform)
     - name: build-image-index
       params:
         - name: IMAGE
