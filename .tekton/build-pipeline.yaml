@@ -82,7 +82,7 @@ spec:
         - name: revision
           value: activation-keys-support
         - name: pathInRepo
-          value: task/buildah/0.1/buildah.yaml
+          value: task/buildah-oci-ta/0.1/buildah-oci-ta.yaml
       runAfter:
         - prefetch-dependencies
       when:
