@@ -75,7 +75,7 @@ spec:
         value: $(params.image-expires-after)
     - name: build-container-amd64
       taskRef:
-        resolver: gitref
+        resolver: git
         params:
         - name: url
           value: https://github.com/rcerven/build-definitions
@@ -119,7 +119,7 @@ spec:
         value: $(params.amd64-platform)
     - name: build-container-arm64
       taskRef:
-        resolver: bundles
+        resolver: git
         params:
         - name: url
           value: https://github.com/rcerven/build-definitions
@@ -163,7 +163,7 @@ spec:
         value: $(params.arm64-platform)
     - name: build-container-ppc64le
       taskRef:
-        resolver: bundles
+        resolver: git
         params:
         - name: url
           value: https://github.com/rcerven/build-definitions
@@ -207,7 +207,7 @@ spec:
         value: $(params.ppc64le-platform)
     - name: build-container-s390x
       taskRef:
-        resolver: bundles
+        resolver: git
         params:
         - name: url
           value: https://github.com/rcerven/build-definitions
