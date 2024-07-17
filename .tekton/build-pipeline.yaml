@@ -96,7 +96,7 @@ spec:
         - 'true'
       params:
       - name: ACTIVATION_KEY
-        value: trusted-artifacts-activation-key
+        value: "trusted-artifacts-activation-key"
       - name: IMAGE
         value: "$(params.output-image)-amd64"
       - name: DOCKERFILE
