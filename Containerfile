@@ -22,7 +22,7 @@ RUN ls -al /mnt
 RUN \
 # Enable additional repositories for CentOS or RHEL.
 if command -v subscription-manager; then \
-  subscription-manager register --orgid $(cat "/activation-key/orgid") \
+  subscription-manager register --org $(cat "/activation-key/orgid") \
     --activationkey $(cat "/activation-key/activationkey") \
   REPO_ARCH=$(uname -m) && \
   dnf repolist all && \
