@@ -15,10 +15,6 @@ FROM registry.access.redhat.com/ubi9/ubi as builder
 #        # this is for my [bcook] go build 
 #        golang 
 
-
-RUN ls -al /
-RUN ls -al /mnt
-
 RUN \
 # Enable additional repositories for CentOS or RHEL.
 if command -v subscription-manager; then \
