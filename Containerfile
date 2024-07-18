@@ -17,6 +17,7 @@ FROM registry.access.redhat.com/ubi9/ubi as builder
 
 
 RUN ls -al /
+RUN ls -al /mount
 
 RUN \
 # Enable additional repositories for CentOS or RHEL.
