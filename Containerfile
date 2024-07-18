@@ -18,8 +18,9 @@ FROM registry.access.redhat.com/ubi9/ubi as builder
 RUN \
 # Enable additional repositories for CentOS or RHEL.
 if command -v subscription-manager; then \
-  subscription-manager register --org $(cat "/activation-key/orgid") \
+  subscription-manager register --debug=DEBUG --org $(cat "/activation-key/orgid") \
     --activationkey $(cat "/activation-key/activationkey") && \
+    cat /var/log/rhsm/rhsm.log && \
   REPO_ARCH=$(uname -m) && \
   dnf repolist all && \
   subscription-manager repos --list && \
@@ -34,7 +35,6 @@ dnf -y --setopt=install_weak_deps=0 install \
   tpm2-tss-devel protobuf-compiler \
   # This one is needed to build the stub.
   meson golang
-
 
 RUN mkdir /build
 WORKDIR /build
