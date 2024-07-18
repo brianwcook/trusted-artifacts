@@ -18,7 +18,7 @@ FROM registry.access.redhat.com/ubi9/ubi as builder
 RUN \
 # Enable additional repositories for CentOS or RHEL.
 if command -v subscription-manager; then \
-  subscription-manager register --debug=DEBUG --org $(cat "/activation-key/orgid") \
+  subscription-manager --debug=DEBUG register  --org $(cat "/activation-key/orgid") \
     --activationkey $(cat "/activation-key/activationkey") && \
     cat /var/log/rhsm/rhsm.log && \
   REPO_ARCH=$(uname -m) && \
