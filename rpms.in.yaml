@@ -11,7 +11,8 @@ packages:
   - pkg-config
   - perl-FindBin
   - openssl-devel 
-  - perl-lib perl-IPC-Cmd 
+  - perl-lib 
+  - perl-IPC-Cmd 
   - perl-File-Compare 
   - perl-File-Copy 
   - clang-devel 
@@ -30,7 +31,7 @@ arches:
   - aarch64
   - x86_64
   - s390x
-  - ppcle64
+  - pp64le
 
 context:
     # Alternative to setting command line options. Usually you will only want
