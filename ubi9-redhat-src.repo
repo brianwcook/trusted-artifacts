@@ -1,6 +1,6 @@
-[rhel-9-for-amd64-appstream-source-rpms]
+[rhel-9-for-x86_64-appstream-source-rpms]
 name = Red Hat Enterprise Linux 9 for ARM 64 - AppStream (Source RPMs)
-baseurl = https://cdn.redhat.com/content/dist/rhel9/$releasever/amd64/appstream/source/SRPMS
+baseurl = https://cdn.redhat.com/content/dist/rhel9/$releasever/x86_64/appstream/source/SRPMS
 enabled = 1
 gpgcheck = 1
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
@@ -12,9 +12,9 @@ sslverifystatus = 1
 metadata_expire = 86400
 enabled_metadata = 1
 
-[rhel-9-for-amd64-baseos-source-rpms]
+[rhel-9-for-x86_64-baseos-source-rpms]
 name = Red Hat Enterprise Linux 9 for ARM 64 - BaseOS (Source RPMs)
-baseurl = https://cdn.redhat.com/content/dist/rhel9/$releasever/amd64/baseos/source/SRPMS
+baseurl = https://cdn.redhat.com/content/dist/rhel9/$releasever/x86_64/baseos/source/SRPMS
 enabled = 1
 gpgcheck = 1
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
@@ -26,9 +26,9 @@ sslverifystatus = 1
 metadata_expire = 86400
 enabled_metadata = 1
 
-[codeready-builder-for-rhel-9-amd64-source-rpms]
+[codeready-builder-for-rhel-9-x86_64-source-rpms]
 name = Red Hat CodeReady Linux Builder for RHEL 9 ARM 64 (Source RPMs)
-baseurl = https://cdn.redhat.com/content/dist/rhel9/$releasever/amd64/codeready-builder/source/SRPMS
+baseurl = https://cdn.redhat.com/content/dist/rhel9/$releasever/x86_64/codeready-builder/source/SRPMS
 enabled = 1
 gpgcheck = 1
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
