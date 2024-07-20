@@ -52,14 +52,22 @@ spec:
         workspace: git-auth
     - name: prefetch-dependencies
       taskRef:
-        resolver: bundles
+        resolver: git
         params:
-        - name: name
-          value: prefetch-dependencies-oci-ta
-        - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-prefetch-dependencies-oci-ta:0.1@sha256:d7dd772489f276aca89aeb0080410f7112418db838c8f3bde6f672ccda6d8fdc
-        - name: kind
-          value: task
+        - name: url
+          value: https://github.com/brianwcook/build-definitions.git
+        - name: revision
+          value: STONEBLD-2618
+        - name: pathInRepo
+          value: task/prefetch-dependencies-oci-ta/0.1/prefetch-dependencies-oci-ta.yaml
+        # resolver: bundles
+        # params:
+        # - name: name
+        #   value: prefetch-dependencies-oci-ta
+        # - name: bundle
+        #   value: quay.io/konflux-ci/tekton-catalog/task-prefetch-dependencies-oci-ta:0.1@sha256:d7dd772489f276aca89aeb0080410f7112418db838c8f3bde6f672ccda6d8fdc
+        # - name: kind
+        #   value: task
       params:
       - name: input
         value: "$(params.prefetch-input)"
