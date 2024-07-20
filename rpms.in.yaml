@@ -31,7 +31,7 @@ arches:
   - aarch64
   - x86_64
   - s390x
-  - pp64le
+  - ppc64le
 
 context:
     # Alternative to setting command line options. Usually you will only want
