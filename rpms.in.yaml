@@ -17,9 +17,9 @@ arches:
   # The list of architectures can be set in the config file. Any `--arch` option set
   # on the command line will override this list.
   - aarch64
-  - x86_64
-  - s390x
-  - ppc64le
+  #- x86_64
+  #- s390x
+  #- ppc64le
 
 context:
     # Alternative to setting command line options. Usually you will only want
