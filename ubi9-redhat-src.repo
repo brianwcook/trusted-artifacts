@@ -38,7 +38,7 @@ sslclientkey = {{entitlement-key.pem}}
 sslclientcert = {{entitlement.pem}}
 sslverifystatus = 1
 metadata_expire = 86400
-enabled_metadata = 0
+enabled_metadata = 1
 
 [rhel-9-for-aarch64-appstream-source-rpms]
 name = Red Hat Enterprise Linux 9 for ARM 64 - AppStream (Source RPMs)
@@ -80,7 +80,7 @@ sslclientkey = {{entitlement-key.pem}}
 sslclientcert = {{entitlement.pem}}
 sslverifystatus = 1
 metadata_expire = 86400
-enabled_metadata = 0
+enabled_metadata = 1
 
 [rhel-9-for-ppc64le-appstream-source-rpms]
 name = Red Hat Enterprise Linux 9 for ARM 64 - AppStream (Source RPMs)
@@ -122,4 +122,4 @@ sslclientkey = {{entitlement-key.pem}}
 sslclientcert = {{entitlement.pem}}
 sslverifystatus = 1
 metadata_expire = 86400
-enabled_metadata = 0
+enabled_metadata = 1

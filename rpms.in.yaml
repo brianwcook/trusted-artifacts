@@ -6,20 +6,8 @@ contentOrigin:
     - ./ubi9-redhat-src.repo
 packages:
   # list of rpm names to resolve
-  - vim-enhanced
-  - cargo 
-  - pkg-config
-  - perl-FindBin
-  - openssl-devel 
-  - perl-lib 
-  - perl-IPC-Cmd 
-  - perl-File-Compare 
-  - perl-File-Copy 
-  - clang-devel 
-  - tpm2-tss-devel 
-  - protobuf-compiler
-  - meson 
   - golang
+  - kernel-devel
 
 #reinstallPackages: []
   # list of rpms already provided in the base image, but which should be
