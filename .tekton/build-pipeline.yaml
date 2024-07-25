@@ -88,7 +88,7 @@ spec:
         - name: url
           value: https://github.com/brianwcook/build-definitions
         - name: revision
-          value: activation-keys-support
+          value: use-tmpfs-for-pki-entitlements
         - name: pathInRepo
           value: task/buildah-oci-ta/0.1/buildah-oci-ta.yaml
       runAfter:
