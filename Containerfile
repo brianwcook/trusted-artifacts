@@ -17,14 +17,14 @@ FROM registry.access.redhat.com/ubi9/ubi as builder
 
 RUN \
 # Enable additional repositories for CentOS or RHEL.
-if command -v subscription-manager; then \
-  subscription-manager register --org $(cat "/activation-key/orgid") \
-    --activationkey $(cat "/activation-key/activationkey") && \
-  REPO_ARCH=$(uname -m) && \
-  dnf repolist all && \
-  subscription-manager repos --list && \
-  subscription-manager repos --enable rhel-9-for-${REPO_ARCH}-appstream-rpms --enable codeready-builder-for-rhel-9-${REPO_ARCH}-rpms; \
-else \
+#if command -v subscription-manager; then \
+#  subscription-manager register --org $(cat "/activation-key/orgid") \
+#    --activationkey $(cat "/activation-key/activationkey") && \
+#  REPO_ARCH=$(uname -m) && \
+#  dnf repolist all && \
+#  subscription-manager repos --list && \
+#  subscription-manager repos --enable rhel-9-for-${REPO_ARCH}-appstream-rpms --enable codeready-builder-for-rhel-9-${REPO_ARCH}-rpms; \
+#else \
   dnf -y install 'dnf-command(config-manager)' && dnf config-manager --enable crb; \
 fi && \
 # Install packages.
