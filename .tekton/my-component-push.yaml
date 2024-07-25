@@ -27,8 +27,13 @@ spec:
     value: .
   - name: revision
     value: '{{revision}}'
+  - name: hermetic
+    value: "true"
+  - name: prefetch-input
+    value: |
+      {"type": "rpm"}
   pipelineRef:
-    name: build-pipeline
+    name: multi-arch-build-pipeline
   workspaces:
     - name: git-auth
       secret:
