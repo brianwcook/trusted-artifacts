@@ -321,7 +321,7 @@ spec:
       - build-container-arm64
       params:
       - name: image-url
-        value: "$(tasks.build-container.results.IMAGE_URL)"
+        value: "$(tasks.build-containe-amd64.results.IMAGE_URL)"
     - name: sast-snyk-check
       taskRef:
         resolver: bundles
@@ -362,9 +362,9 @@ spec:
       - build-container-arm64
       params:
       - name: image-digest
-        value: "$(tasks.build-container.results.IMAGE_DIGEST)"
+        value: "$(tasks.build-container-amd64.results.IMAGE_DIGEST)"
       - name: image-url
-        value: "$(tasks.build-container.results.IMAGE_URL)"
+        value: "$(tasks.build-container-amd64.results.IMAGE_URL)"
     - name: sbom-json-check
       taskRef:
         resolver: bundles
@@ -385,9 +385,9 @@ spec:
       - build-container-arm64
       params:
       - name: IMAGE_URL
-        value: "$(tasks.build-container.results.IMAGE_URL)"
+        value: "$(tasks.build-container-amd64.results.IMAGE_URL)"
       - name: IMAGE_DIGEST
-        value: "$(tasks.build-container.results.IMAGE_DIGEST)"
+        value: "$(tasks.build-container-amd64.results.IMAGE_DIGEST)"
     params:
     - name: git-url
       type: string
@@ -442,10 +442,10 @@ spec:
     results:
     - name: IMAGE_URL
       description: ''
-      value: "$(tasks.build-container.results.IMAGE_URL)"
+      value: "$(tasks.build-container-amd64.results.IMAGE_URL)"
     - name: IMAGE_DIGEST
       description: ''
-      value: "$(tasks.build-container.results.IMAGE_DIGEST)"
+      value: "$(tasks.build-container-amd64.results.IMAGE_DIGEST)"
     - name: CHAINS-GIT_URL
       description: ''
       value: "$(tasks.clone-repository.results.url)"
@@ -454,7 +454,7 @@ spec:
       value: "$(tasks.clone-repository.results.commit)"
     - name: JAVA_COMMUNITY_DEPENDENCIES
       description: ''
-      value: "$(tasks.build-container.results.JAVA_COMMUNITY_DEPENDENCIES)"
+      value: "$(tasks.build-container-amd64.results.JAVA_COMMUNITY_DEPENDENCIES)"
     finally:
     - name: show-sbom
       taskRef:
