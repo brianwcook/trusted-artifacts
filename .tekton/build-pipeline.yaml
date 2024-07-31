@@ -52,22 +52,22 @@ spec:
         workspace: git-auth
     - name: prefetch-dependencies
       taskRef:
-        resolver: git
+    #     resolver: git
+    #     params:
+    #     - name: url
+    #       value: https://github.com/brianwcook/build-definitions.git
+    #     - name: revision
+    #       value: STONEBLD-2618
+    #     - name: pathInRepo
+    #       value: task/prefetch-dependencies-oci-ta/0.1/prefetch-dependencies-oci-ta.yaml
+        resolver: bundles
         params:
-        - name: url
-          value: https://github.com/brianwcook/build-definitions.git
-        - name: revision
-          value: STONEBLD-2618
-        - name: pathInRepo
-          value: task/prefetch-dependencies-oci-ta/0.1/prefetch-dependencies-oci-ta.yaml
-        # resolver: bundles
-        # params:
-        # - name: name
-        #   value: prefetch-dependencies-oci-ta
-        # - name: bundle
-        #   value: quay.io/konflux-ci/tekton-catalog/task-prefetch-dependencies-oci-ta:0.1@sha256:d7dd772489f276aca89aeb0080410f7112418db838c8f3bde6f672ccda6d8fdc
-        # - name: kind
-        #   value: task
+        - name: name
+          value: prefetch-dependencies-oci-ta
+        - name: bundle
+          value: quay.io/konflux-ci/tekton-catalog/task-prefetch-dependencies-oci-ta:0.1@sha256:d7dd772489f276aca89aeb0080410f7112418db838c8f3bde6f672ccda6d8fdc
+        - name: kind
+          value: task
       params:
       - name: input
         value: "$(params.prefetch-input)"
@@ -82,15 +82,13 @@ spec:
       - name: ociArtifactExpiresAfter
         value: $(params.image-expires-after)
     - name: build-container-amd64
-      taskRef:
-        resolver: git
+      taskref:
         params:
-        - name: url
-          value: https://github.com/brianwcook/build-definitions
-        - name: revision
-          value: use-tmpfs-for-pki-entitlements
-        - name: pathInRepo
-          value: task/buildah-oci-ta/0.1/buildah-oci-ta.yaml
+        - name: bundle
+          value: quay.io/konflux-ci/tekton-catalog/task-buildah:0.1@sha256:72e4ddd9b543e2766830e3a513da5c2fec26ea7a72a50e8c85be642912caa603
+        - name: kind
+          value: task
+        resolver: bundles
       runAfter:
         - prefetch-dependencies
       when:
@@ -125,14 +123,12 @@ spec:
         value: $(params.build-args-file)
     - name: build-container-arm64
       taskRef:
-        resolver: git
         params:
-        - name: url
-          value: https://github.com/brianwcook/build-definitions
-        - name: revision
-          value: use-tmpfs-for-pki-entitlements
-        - name: pathInRepo
-          value: task/buildah-remote-oci-ta/0.1/buildah-remote-oci-ta.yaml
+        - name: bundle
+          value: quay.io/konflux-ci/tekton-catalog/task-buildah-remote-oci-ta:0.1@sha256:12fa81a8407a17e5e119ba088fa65549d2d970c8b9c490ec8ec50e5f75df9d89
+        - name: kind
+          value: task
+        resolver: bundles
       runAfter:
         - prefetch-dependencies
       when:
