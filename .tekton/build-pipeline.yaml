@@ -269,7 +269,8 @@ spec:
         values:
         - 'false'
       runAfter:
-      - build-container
+      - build-container-amd64
+      - build-container-arm64
       params:
       - name: BASE_IMAGES_DIGESTS
         value: "$(tasks.build-container-amd64.results.BASE_IMAGES_DIGESTS)"
@@ -293,7 +294,8 @@ spec:
         values:
         - 'false'
       runAfter:
-      - build-container
+      - build-container-amd64
+      - build-container-arm64
       params:
       - name: image-digest
         value: "$(tasks.build-image-index.results.IMAGE_URL)"
@@ -315,7 +317,8 @@ spec:
         values:
         - 'false'
       runAfter:
-      - build-container
+      - build-container-amd64
+      - build-container-arm64
       params:
       - name: image-url
         value: "$(tasks.build-container.results.IMAGE_URL)"
@@ -355,7 +358,8 @@ spec:
         values:
         - 'false'
       runAfter:
-      - build-container
+      - build-container-amd64
+      - build-container-arm64
       params:
       - name: image-digest
         value: "$(tasks.build-container.results.IMAGE_DIGEST)"
@@ -377,7 +381,8 @@ spec:
         values:
         - 'false'
       runAfter:
-      - build-container
+      - build-container-amd64
+      - build-container-arm64
       params:
       - name: IMAGE_URL
         value: "$(tasks.build-container.results.IMAGE_URL)"
