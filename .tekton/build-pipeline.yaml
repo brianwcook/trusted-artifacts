@@ -50,8 +50,7 @@ spec:
       workspaces:
       - name: basic-auth
         workspace: git-auth
-    - name: prefetch-dependencies
-      taskRef:
+
     #     resolver: git
     #     params:
     #     - name: url
@@ -60,12 +59,15 @@ spec:
     #       value: STONEBLD-2618
     #     - name: pathInRepo
     #       value: task/prefetch-dependencies-oci-ta/0.1/prefetch-dependencies-oci-ta.yaml
+
+    - name: prefetch-dependencies
+      taskRef:
         resolver: bundles
         params:
         - name: name
           value: prefetch-dependencies-oci-ta
         - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-prefetch-dependencies-oci-ta:0.1@sha256:d7dd772489f276aca89aeb0080410f7112418db838c8f3bde6f672ccda6d8fdc
+          value: quay.io/redhat-appstudio-tekton-catalog/task-prefetch-dependencies-oci-ta:0.1@sha256:e179426b46bc44e083ae4b44a4c707dc61a964734e64ee1bc5f2aa6430cd8418
         - name: kind
           value: task
       params:
@@ -73,8 +75,6 @@ spec:
         value: "$(params.prefetch-input)"
       - name: hermetic
         value: "$(params.hermetic)"
-      - name: dev-package-managers
-        value: $(params.prefetch-dev-package-managers-enabled)
       - name: SOURCE_ARTIFACT
         value: $(tasks.clone-repository.results.SOURCE_ARTIFACT)
       - name: ociStorage
