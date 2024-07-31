@@ -110,7 +110,7 @@ spec:
           value: main
         - name: pathInRepo
           value: .tekton/go-test.yaml
-    - name: build-container
+    - name: build-container-amd64
       taskRef:
         resolver: bundles
         params:
@@ -130,7 +130,7 @@ spec:
         - 'true'
       params:
       - name: IMAGE
-        value: "$(params.output-image)"
+        value: "$(params.output-image)-amd64"
       - name: DOCKERFILE
         value: "$(params.dockerfile)"
       - name: CONTEXT
@@ -147,6 +147,82 @@ spec:
         value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
       - name: CACHI2_ARTIFACT
         value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
+    - name: build-container-arm64
+      taskRef:
+        resolver: bundles
+        params:
+        - name: name
+          value: buildah-remote-oci-ta
+        - name: bundle
+          value: quay.io/konflux-ci/tekton-catalog/task-buildah-remote-oci-ta@sha256:2538a48cb434f537a7b5c338b34c1215bd6ac150cb2b2e399ffeeaae0a1cf9bc
+        - name: kind
+          value: task
+      runAfter:
+        - mpc-run-test-arm64
+        - mpc-run-test-amd64
+      when:
+      - input: "$(tasks.init.results.build)"
+        operator: in
+        values:
+        - 'true'
+      - input: "$(params.enable-arm64-build)"
+        operator: in
+        values:
+        - 'true'
+      params:
+      - name: IMAGE
+        value: "$(params.output-image)-arm64"
+      - name: DOCKERFILE
+        value: "$(params.dockerfile)"
+      - name: CONTEXT
+        value: "$(params.path-context)"
+      - name: HERMETIC
+        value: "$(params.hermetic)"
+      - name: PREFETCH_INPUT
+        value: "$(params.prefetch-input)"
+      - name: IMAGE_EXPIRES_AFTER
+        value: "$(params.image-expires-after)"
+      - name: COMMIT_SHA
+        value: "$(tasks.clone-repository.results.commit)"
+      - name: SOURCE_ARTIFACT
+        value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
+      - name: CACHI2_ARTIFACT
+        value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
+      - name: BUILD_ARGS_FILE
+        value: $(params.build-args-file)
+      - name: PLATFORM
+        value: $(params.arm64-platform)
+    - name: build-image-index
+      params:
+        - name: IMAGE
+          value: $(params.output-image)
+        - name: COMMIT_SHA
+          value: $(tasks.clone-repository.results.commit)
+        - name: IMAGES
+          value:
+            - $(tasks.build-container-amd64.results.IMAGE_URL)@$(tasks.build-container-amd64.results.IMAGE_DIGEST)
+            - $(tasks.build-container-arm64.results.IMAGE_URL)@$(tasks.build-container-arm64.results.IMAGE_DIGEST)
+            # - $(tasks.build-container-s390x.results.IMAGE_URL)@$(tasks.build-container-s390x.results.IMAGE_DIGEST)
+            # - $(tasks.build-container-ppc64le.results.IMAGE_URL)@$(tasks.build-container-ppc64le.results.IMAGE_DIGEST)
+      runAfter:
+        - build-container-amd64
+        - build-container-arm64
+        # - build-container-s390x
+        # - build-container-ppc64le
+      taskRef:
+        params:
+          - name: name
+            value: build-image-manifest
+          - name: bundle
+            value: quay.io/konflux-ci/tekton-catalog/task-build-image-manifest:0.1@sha256:231b521c5443a750cfcb302b74633ebe140b5ab0333688c91d32745417cc23a3
+          - name: kind
+            value: task
+        resolver: bundles
+      when:
+        - input: "$(tasks.init.results.build)"
+          operator: in
+          values:
+          - 'true'
     - name: build-source-image
       taskRef:
         resolver: bundles
@@ -167,12 +243,12 @@ spec:
         values:
         - 'true'
       runAfter:
-      - build-container
+      - build-image-index
       params:
       - name: BINARY_IMAGE
         value: "$(params.output-image)"
       - name: BASE_IMAGES
-        value: "$(tasks.build-container.results.BASE_IMAGES_DIGESTS)"
+        value: "$(tasks.build-container-amd64.results.BASE_IMAGES_DIGESTS)"
       - name: SOURCE_ARTIFACT
         value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
       - name: CACHI2_ARTIFACT
@@ -196,11 +272,11 @@ spec:
       - build-container
       params:
       - name: BASE_IMAGES_DIGESTS
-        value: "$(tasks.build-container.results.BASE_IMAGES_DIGESTS)"
+        value: "$(tasks.build-container-amd64.results.BASE_IMAGES_DIGESTS)"
       - name: IMAGE_URL
-        value: $(tasks.build-container.results.IMAGE_URL)
+        value: $(tasks.build-container-amd64.results.IMAGE_URL)
       - name: IMAGE_DIGEST
-        value: $(tasks.build-container.results.IMAGE_DIGEST)
+        value: $(tasks.build-container-amd64.results.IMAGE_DIGEST)
     - name: clair-scan
       taskRef:
         resolver: bundles
@@ -220,9 +296,9 @@ spec:
       - build-container
       params:
       - name: image-digest
-        value: "$(tasks.build-container.results.IMAGE_DIGEST)"
+        value: "$(tasks.build-image-index.results.IMAGE_URL)"
       - name: image-url
-        value: "$(tasks.build-container.results.IMAGE_URL)"
+        value: "$(tasks.build-image-index.results.IMAGE_URL)"
     - name: ecosystem-cert-preflight-checks
       taskRef:
         resolver: bundles
@@ -387,7 +463,7 @@ spec:
           value: task
       params:
       - name: IMAGE_URL
-        value: "$(tasks.build-container.results.IMAGE_URL)"
+        value: "$(tasks.build-image-index.results.IMAGE_URL)"
     - name: show-summary
       taskRef:
         resolver: bundles
@@ -406,4 +482,4 @@ spec:
       - name: image-url
         value: "$(params.output-image)"
       - name: build-task-status
-        value: "$(tasks.build-container.status)"
+        value: "$(tasks.build-image-index.status)"
