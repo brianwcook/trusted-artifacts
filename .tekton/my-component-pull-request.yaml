@@ -32,9 +32,6 @@ spec:
     value: '{{revision}}'
   - name: hermetic
     value: "true"
-  - name: prefetch-input
-    value: |
-      {"type": "rpm"}
   pipelineRef:
     name: multi-arch-build-pipeline
   workspaces:
