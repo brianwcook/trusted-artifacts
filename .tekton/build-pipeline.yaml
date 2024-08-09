@@ -116,7 +116,7 @@ spec:
         - name: name
           value: buildah
         - name: bundle
-          value: quay.io/lucarval/task-buildah:0.2@sha256:bb278989ae85465728aa9e005008a81f98456683a81a7ce31c6e5a603a157580
+          value: quay.io/lucarval/task-buildah:0.2@sha256:0527c79315fd3edf142808c8aec361ea0f0d85e38ab6e9765a805f81dfd749a7
         - name: kind
           value: task
       runAfter:
