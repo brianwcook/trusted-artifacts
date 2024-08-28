@@ -28,7 +28,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   pipelineRef:
-    name: build-pipeline
+    name: docker-build-multi-platform-oci-ta
   workspaces:
     - name: git-auth
       secret:
