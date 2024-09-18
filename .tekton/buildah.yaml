@@ -335,7 +335,7 @@ spec:
     securityContext:
       runAsUser: 0
     workingDir: "/var/workdir"
-  - image: quay.io/redhat-appstudio/cachi2:0.6.0@sha256:15d0513ed891b1d34fc46e56fdc9f6b457c90fbfd34f6a8c8fce6d3400ddc4a7
+  - image: quay.io/redhat-appstudio/cachi2:0.11.0@sha256:1051a8e55f4b6dddb5591ac103644e1d45b2367cffe50ba900418939aace0fb2
     name: merge-cachi2-sbom
     script: |
       if [ -n "${PREFETCH_INPUT}" ]; then
